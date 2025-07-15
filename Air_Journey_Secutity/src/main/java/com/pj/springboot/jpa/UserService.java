@@ -1,52 +1,46 @@
 package com.pj.springboot.jpa;
 
-import java.util.Optional;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
 public class UserService 
 {
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UserService(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) 
+    {
         this.userRepository = userRepository;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-}
+        this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Transactional
-    public User registerUser(User user) 
+    public User registerEmployee(User employee) 
     {
-        if (userRepository.findById(user.getId()).isPresent()) 
+        if (userRepository.existsById(employee.getId())) 
         {
-            throw new IllegalArgumentException("이미 존재하는 ID입니다.");
+            throw new RuntimeException("이미 존재하는 직원 ID입니다: " + employee.getId());
         }
-        if (userRepository.findByEmail(user.getEmail()).isPresent()) 
-        {
-            throw new IllegalArgumentException("이미 존재하는 이메일입니다.");
-        }
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
-    }
 
-    public Optional<User> loginUser(String id, String password) 
-    {
-        Optional<User> optionalUser = userRepository.findById(id);
-        if (optionalUser.isPresent()) 
+        if (employee.getEmployeeNumber() != null && userRepository.findByEmployeeNumber(employee.getEmployeeNumber()).isPresent()) 
         {
-            User user = optionalUser.get();
-            if (bCryptPasswordEncoder.matches(password, user.getPassword())) 
-            {
-                return Optional.of(user);
-            }
+            throw new RuntimeException("이미 존재하는 사원 번호입니다: " + employee.getEmployeeNumber());
         }
-        return Optional.empty();
-    }
 
-    public Optional<User> findUserById(String id) {
-        return userRepository.findById(id);
+        employee.setPassword(passwordEncoder.encode(employee.getPassword()));
+
+        Role employeeRole = roleRepository.findByRoleName("ROLE_EMPLOYEE")
+                                .orElseThrow(() -> new IllegalStateException("필수 역할 'ROLE_EMPLOYEE'가 데이터베이스에 존재하지 않습니다. ROLES 테이블에 해당 역할을 추가해야 합니다."));
+        employee.addRole(employeeRole);
+
+        employee.setEnabled(true);
+
+        return userRepository.save(employee);
     }
 }
