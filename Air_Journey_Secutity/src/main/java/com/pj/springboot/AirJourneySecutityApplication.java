@@ -14,7 +14,7 @@ public class AirJourneySecutityApplication
 		
 		// ★★★ 임시 코드: 관리자 비밀번호 인코딩 ★★★
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String rawPassword = "adminpassword123!"; // 당신이 사용할 관리자 비밀번호
+		String rawPassword = "1234"; // 당신이 사용할 관리자 비밀번호
 		String encodedPassword = encoder.encode(rawPassword);
 		System.out.println("인코딩된 관리자 비밀번호: " + encodedPassword);
         // 이 애플리케이션을 실행하면 콘솔에 인코딩된 비밀번호가 출력됩니다.
