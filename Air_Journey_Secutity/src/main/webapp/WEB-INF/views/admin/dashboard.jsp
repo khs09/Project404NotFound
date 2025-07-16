@@ -15,8 +15,7 @@
     <h3>관리자 기능</h3>
     <ul>
         <li><a href="<c:url value="/admin/register-employee"/>">직원 계정 등록</a></li>
-        <li><a href="#">사용자 관리 (TODO)</a></li> <%-- 추후 구현 --%>
-        <li><a href="#">시스템 설정 (TODO)</a></li> <%-- 추후 구현 --%>
+        <li><a href="<c:url value="/admin/manage-users"/>">사용자 관리</a></li>
     </ul>
 
     <form action="<c:url value="/logout"/>" method="post">

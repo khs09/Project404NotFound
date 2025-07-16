@@ -13,7 +13,6 @@ h2, h3
     color: #0056b3;
 }
 
-/* 링크 스타일 */
 a 
 {
     color: #007bff;
@@ -25,7 +24,6 @@ a:hover
     text-decoration: underline;
 }
 
-/* 폼 요소 스타일 */
 form 
 {
     background-color: #fff;
@@ -51,14 +49,14 @@ form label
 form input[type="text"],
 form input[type="password"],
 form input[type="email"],
-form input[type="number"], /* 사원 번호 등을 위해 추가될 수 있음 */
+form input[type="number"], 
 form select 
 {
-    width: calc(100% - 22px); /* padding 고려 */
+    width: calc(100% - 22px); 
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    box-sizing: border-box; /* 패딩이 너비에 포함되도록 */
+    box-sizing: border-box;
 }
 
 form button 
@@ -78,7 +76,6 @@ form button:hover
     background-color: #0056b3;
 }
 
-/* 메시지 스타일 */
 .success-message 
 {
     background-color: #d4edda;
@@ -89,7 +86,7 @@ form button:hover
     border-radius: 4px;
     text-align: center;
     max-width: 400px;
-    margin: 20px auto; /* 폼과 유사하게 중앙 정렬 */
+    margin: 20px auto; 
 }
 
 .error-message 
@@ -102,10 +99,9 @@ form button:hover
     border-radius: 4px;
     text-align: center;
     max-width: 400px;
-    margin: 20px auto; /* 폼과 유사하게 중앙 정렬 */
+    margin: 20px auto; 
 }
 
-/* 대시보드 목록 스타일 */
 ul 
 {
     list-style-type: none;
