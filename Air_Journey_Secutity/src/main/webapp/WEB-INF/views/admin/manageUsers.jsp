@@ -6,65 +6,6 @@
 <head>
     <title>사용자 관리</title>
     <link rel="stylesheet" href="<c:url value="/css/style.css"/>">
-    <style>
-        /* 사용자 관리 테이블 스타일 */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .user-roles {
-            font-size: 0.9em;
-            color: #555;
-        }
-        .enabled-status {
-            font-weight: bold;
-        }
-        .enabled-true { color: green; }
-        .enabled-false { color: red; }
-        .action-buttons form {
-            display: inline-block;
-            margin: 0;
-            padding: 0;
-        }
-        .action-buttons button {
-            background-color: #dc3545;
-            color: white;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.9em;
-            margin-left: 5px; /* 버튼 간격 */
-        }
-        .action-buttons button:hover {
-            background-color: #c82333;
-        }
-        .action-buttons a {
-            background-color: #007bff;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 0.9em;
-            display: inline-block;
-        }
-        .action-buttons a:hover {
-            background-color: #0056b3;
-        }
-        .no-action {
-            color: #888;
-            font-style: italic;
-        }
-    </style>
 </head>
 <body>
     <h2>사용자 관리</h2>

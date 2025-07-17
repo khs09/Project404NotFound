@@ -1,123 +1,261 @@
-@charset "UTF-8";
-body 
-{
-    font-family: Arial, sans-serif;
-    margin: 20px;
+body {
+    font-family: 'Inter', Arial, sans-serif; /* Inter 폰트 사용 (가정) */
+    margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f0f2f5; /* 밝은 회색 배경 */
     color: #333;
+    line-height: 1.6;
+    display: flex; /* Flexbox를 사용하여 전체 페이지 컨텐츠를 중앙 정렬할 때 유용 */
+    flex-direction: column; /* 세로 정렬 */
+    min-height: 100vh; /* 최소 높이를 뷰포트 전체 높이로 설정 */
 }
 
-h2, h3 
-{
-    color: #0056b3;
+/* 컨테이너 및 섹션 */
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 900px; /* 최대 너비 설정 */
+    margin: 40px auto; /* 상하 40px, 좌우 자동 (가운데 정렬) */
+    flex-grow: 1; /* 남은 공간을 채우도록 성장 */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 내부 컨텐츠 가로 중앙 정렬 */
 }
 
-a 
-{
-    color: #007bff;
+/* 제목 스타일 */
+h2, h3 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* 링크 스타일 */
+a {
+    color: #3498db;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-a:hover 
-{
+a:hover {
+    color: #2980b9;
     text-decoration: underline;
 }
 
-form 
-{
-    background-color: #fff;
-    padding: 20px;
+/* 메시지 박스 */
+.success-message, .error-message {
+    padding: 12px 20px;
+    margin-bottom: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    margin: 20px auto;
-}
-
-form div 
-{
-    margin-bottom: 15px;
-}
-
-form label 
-{
-    display: block;
-    margin-bottom: 5px;
     font-weight: bold;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* 폼 스타일 */
+form {
+    width: 100%;
+    max-width: 500px; /* 폼의 최대 너비 */
+    margin: 0 auto; /* 폼 자체를 가운데 정렬 */
+}
+
+form div {
+    margin-bottom: 18px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
 }
 
 form input[type="text"],
 form input[type="password"],
 form input[type="email"],
-form input[type="number"], 
-form select 
-{
-    width: calc(100% - 22px); 
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+form input[type="number"],
+form textarea,
+form select {
+    width: calc(100% - 24px); /* 패딩 고려 */
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
     box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
 }
 
-form button 
-{
-    background-color: #007bff;
+form input[type="text"]:focus,
+form input[type="password"]:focus,
+form input[type="email"]:focus,
+form input[type="number"]:focus,
+form textarea:focus,
+form select:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+form input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+/* 버튼 스타일 */
+button[type="submit"], .button-link {
+    background-color: #3498db;
     color: white;
-    padding: 10px 15px;
+    padding: 12px 25px;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1.1em;
+    font-weight: 600;
     width: 100%;
-}
-
-form button:hover
-{
-    background-color: #0056b3;
-}
-
-.success-message 
-{
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 4px;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, transform 0.1s ease;
     text-align: center;
-    max-width: 400px;
-    margin: 20px auto; 
+    display: inline-block; /* 링크처럼 사용될 때 */
 }
 
-.error-message 
-{
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 4px;
+button[type="submit"]:hover, .button-link:hover {
+    background-color: #2980b9;
+    transform: translateY(-1px);
+}
+
+/* 특정 버튼 색상 */
+button.delete-btn {
+    background-color: #e74c3c;
+}
+
+button.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+/* 테이블 스타일 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden; /* 모서리 둥글게 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+table th {
+    background-color: #ecf0f1;
+    color: #555;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* 짝수 행 배경색 */
+}
+
+table tbody tr:hover {
+    background-color: #f0f8ff; /* 호버 시 배경색 */
+}
+
+/* 테이블 액션 버튼/링크 */
+.report-actions a, .report-actions button {
+    background-color: #3498db;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85em;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 8px; /* 버튼/링크 간격 */
+    transition: background-color 0.3s ease;
+}
+
+.report-actions a:hover, .report-actions button:hover {
+    background-color: #2980b9;
+}
+
+.report-actions button.delete-btn {
+    background-color: #e74c3c;
+}
+
+.report-actions button.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+.no-action {
+    color: #888;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+/* 상세 보기 페이지 스타일 */
+.report-detail-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 40px auto;
+}
+.report-detail-container h2 {
     text-align: center;
-    max-width: 400px;
-    margin: 20px auto; 
+    color: #2c3e50;
+    margin-bottom: 25px;
 }
-
-ul 
-{
-    list-style-type: none;
-    padding: 0;
+.report-info {
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #e0e0e0;
 }
-
-ul li 
-{
-    background-color: #e9ecef;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
+.report-info p {
+    margin: 8px 0;
+    font-size: 1.1em;
+    color: #555;
 }
-
-ul li a 
-{
+.report-info strong {
+    color: #333;
+    display: inline-block;
+    width: 120px; /* 라벨 너비 고정 */
+    font-weight: 600;
+}
+.report-content {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+    min-height: 250px;
+    white-space: pre-wrap; /* 줄바꿈 유지 */
+    word-wrap: break-word; /* 긴 단어 줄바꿈 */
+    line-height: 1.7;
+    color: #333;
+    font-size: 1.05em;
+}
+.back-link {
     display: block;
-    font-weight: bold;
+    margin-top: 30px;
+    text-align: center;
 }
+
