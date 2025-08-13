@@ -36,7 +36,7 @@ export default function Dashboard() {
 
         <div className="col-md-8">
           {selectedReport ? (
-            <div className="card">
+            <div className="card shadow p-3">
               <div className="card-body">
                 <h5 className="card-title">{selectedReport.title}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">제출자: {selectedReport.submitter} | 날짜: {selectedReport.date}</h6>

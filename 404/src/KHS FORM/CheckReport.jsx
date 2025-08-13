@@ -11,11 +11,19 @@ export default function CheckReport() {
   const [reports] = useState(initialReports);
   const [selectedReport, setSelectedReport] = useState(null);
 
+  const handleSubmitClick = () => {
+    alert("보고서 작성 화면으로 이동");
+  };
+
   return (
     <div className="container mt-4">
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h4>제출한 보고서</h4>
+        <button className="btn btn-primary" onClick={handleSubmitClick}>보고서 제출</button>
+      </div>
+
       <div className="row">
         <div className="col-md-4">
-          <h4>제출한 보고서</h4>
           {reports.length === 0 ? <p className="text-muted">작성된 보고서가 없습니다.</p> :
             <ul className="list-group">
               {reports.map(report => (
@@ -30,7 +38,7 @@ export default function CheckReport() {
 
         <div className="col-md-8">
           {selectedReport ? (
-            <div className="card">
+            <div className="card shadow p-3">
               <div className="card-body">
                 <h5 className="card-title">{selectedReport.title}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">제출자: {selectedReport.submitter} | 날짜: {selectedReport.date}</h6>
