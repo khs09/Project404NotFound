@@ -1,9 +1,9 @@
 // @ts-nocheck
 import React, { useState } from "react";
-import Dashboard from "./pages/ApprovalReport.tsx";
-import CheckReport from "./pages/CheckReport.tsx";
-import SubmitReport from "./pages/SubmitReport.tsx";
-import Login from "./pages/Login.tsx";
+import Dashboard from "./KHS FORM/ApprovalReport";
+import CheckReport from "./KHS FORM/CheckReport";
+import SubmitReport from "./KHS FORM/SubmitReport";
+import Login from "./KHS FORM/Login";
 
 export default function App() {
   const [selectedPage, setSelectedPage] = useState(null);
