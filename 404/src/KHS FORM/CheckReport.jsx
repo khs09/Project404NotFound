@@ -1,54 +1,172 @@
-// @ts-nocheck
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React from "react";
+import { Link } from "react-router-dom";
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
-export default function CheckReport() {
-  const initialReports = [
-    { id: 1, title: "주간 업무 보고", content: "이번 주 주요 업무는 시스템 점검 및 보고서 작성이었습니다.", submitter: "본인", date: "2025-08-10", status: "승인" },
-    { id: 2, title: "월간 회의 보고", content: "이번 달 회의 내용과 결과 보고.", submitter: "본인", date: "2025-08-09", status: "대기" },
+function ApprovalList(props) {
+  console.log(props);
+
+  // 샘플 데이터 (디자인용)
+  const rows = [
+    { no: 5, title: "1234",       type: "일일 안전 리포트", author: "user1", date: "2025-07-21T15:04:25.042", status: "APPROVED" },
+    { no: 4, title: "123123",     type: "항공기 이상 보고서", author: "user1", date: "2025-07-20T17:27:58.474", status: "APPROVED" },
+    { no: 3, title: "123123123",  type: "운항 상황 보고", author: "user1", date: "2025-07-20T16:51:01.196", status: "PENDING"   },
+    { no: 2, title: "123123",     type: "지상 상황 보고",     author: "user1", date: "2025-07-20T16:50:08.963", status: "REJECTED"  },
+    { no: 1, title: "123",        type: "항공기 이상 보고서", author: "123",   date: "2025-07-20T16:35:16.508", status: "PENDING"   },
   ];
 
-  const [reports] = useState(initialReports);
-  const [selectedReport, setSelectedReport] = useState(null);
+  // 날짜 YYYY-MM-DD로만 표시
+  const fmtDate = (s) => (s?.includes("T") ? s.split("T")[0] : s);
 
-  const handleSubmitClick = () => {
-    alert("보고서 작성 화면으로 이동");
+  // 상태 → 한글/배지색
+  const statusInfo = (s) => {
+    switch (s) {
+      case "APPROVED": return { label: "승인",     cls: "bg-success" };
+      case "REJECTED": return { label: "반려",     cls: "bg-danger"  };
+      case "PENDING":  return { label: "대기",     cls: "bg-warning text-dark" };
+      default:         return { label: s,          cls: "bg-secondary" };
+    }
+  };
+
+  const styles = {
+    hero: {
+      height: 300,
+      backgroundImage: "url(/images/Generated.png)",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    },
+    heroMask: {
+      background: "linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.35))",
+    },
   };
 
   return (
-    <div className="container mt-4">
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <h4>제출한 보고서</h4>
-        <button className="btn btn-primary" onClick={handleSubmitClick}>보고서 제출</button>
-      </div>
-
-      <div className="row">
-        <div className="col-md-4">
-          {reports.length === 0 ? <p className="text-muted">작성된 보고서가 없습니다.</p> :
-            <ul className="list-group">
-              {reports.map(report => (
-                <li key={report.id} className={`list-group-item ${selectedReport?.id === report.id ? "active" : ""}`} onClick={() => setSelectedReport(report)} style={{ cursor: "pointer" }}>
-                  <strong>{report.title}</strong><br />
-                  <small>상태: {report.status}</small>
-                </li>
-              ))}
+    <div className="bg-light min-vh-100 d-flex flex-column">
+      {/* 상단 네비 */}
+      <header>
+        <nav className="navbar bg-white border-bottom">
+          <div className="container-xxl">
+            <Link className="navbar-brand fw-bold" to="/">✈ 그룹웨어</Link>
+            <ul className="navbar-nav flex-row gap-3">
+              <li className="nav-item"><span className="nav-link">전자결재시스템</span></li>
+              <li className="nav-item"><span className="nav-link">문서보관소</span></li>
+              <li className="nav-item"><span className="nav-link">업무보고시스템</span></li>
+              <li className="nav-item"><span className="nav-link">커뮤니케이션기능</span></li>
+              <li className="nav-item"><span className="nav-link">일정관리</span></li>
             </ul>
-          }
+            <div className="ms-auto">
+              <Link to="/login" className="btn btn-outline-secondary btn-sm">
+            로그인
+              </Link>
+            </div>
+          </div>
+        </nav>
+
+        {/* 상단 배너(히어로) */}
+        <section className="position-relative" style={styles.hero}>
+          <div className="position-absolute top-0 start-0 w-100 h-100" style={styles.heroMask} />
+          <div className="container-xxl position-relative" style={{ zIndex: 1 }}>
+            <div className="py-5">
+              <h1 className="display-5 fw-bold text-white mb-0">업무 보고 시스템</h1>
+            </div>
+          </div>
+        </section>
+      </header>
+
+      {/* 본문 */}
+      <main className="container-xxl py-4 flex-grow-1">
+
+        {/* 검색 영역 (모양만) */}
+       <div className="d-flex flex-wrap gap-2 align-items-center mb-3">
+  <select defaultValue="" className="form-select w-auto">
+    <option value="">번호</option>
+    <option value="">제목</option>
+    <option value="">유형</option>
+    <option value="">작성자</option>
+    <option value="">작성일</option>
+  </select>
+  <div className="input-group" style={{ maxWidth: 420 }}>
+    <input type="text" className="form-control" placeholder="검색어를 입력하세요" />
+    <button type="button" className="btn btn-outline-secondary">
+      <i className="bi bi-search" aria-hidden="true"></i>
+      <span className="visually-hidden">검색</span>
+    </button>
+  </div>
+
+  <Link to="/ApprovalReport" className="btn btn-warning">
+    <i className="bi bi-check2-square me-1"></i> 결재
+  </Link>
+
+  <Link to="/SubmitReport" className="btn btn-primary ms-auto">
+    <i className="bi bi-pencil-square me-1" aria-hidden="true"></i> 글쓰기
+  </Link>
+</div>
+
+        {/* 테이블 */}
+        <div className="table-responsive shadow-sm rounded-3">
+          <table className="table table-hover align-middle mb-0">
+            <thead className="table-light">
+              <tr>
+                <th className="text-center" style={{ width: 90 }}>번호</th>
+                <th>제목</th>
+                <th className="text-center" style={{ width: 160 }}>유형</th>
+                <th className="text-center" style={{ width: 140 }}>작성자</th>
+                <th className="text-center" style={{ width: 140 }}>작성일</th>
+                <th className="text-center" style={{ width: 120 }}>상태</th>
+                <th className="text-center" style={{ width: 160 }}>작업</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((r) => {
+                const info = statusInfo(r.status);
+                return (
+                  <tr key={r.no}>
+                    <td className="text-center">{r.no}</td>
+                    <td className="text-truncate" style={{ maxWidth: 600 }}>
+                      {/* 제목 링크 - 방문 전/후 색상 다르게 (board.css) */}
+                      <Link
+                        to={`/ApprovalView/${r.no}`}
+                        className="board-title text-decoration-underline fw-semibold"
+                        title={r.title}
+                      >
+                        {r.title}
+                      </Link>
+                    </td>
+                    <td className="text-center">{r.type}</td>
+                    <td className="text-center">{r.author}</td>
+                    <td className="text-center">{fmtDate(r.date)}</td>
+                    <td className="text-center">
+                      <span className={`badge rounded-pill ${info.cls}`}>{info.label}</span>
+                    </td>
+                    <td className="text-center">
+                      <div className="btn-group btn-group-sm" role="group" aria-label="작업">
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
 
-        <div className="col-md-8">
-          {selectedReport ? (
-            <div className="card shadow p-3">
-              <div className="card-body">
-                <h5 className="card-title">{selectedReport.title}</h5>
-                <h6 className="card-subtitle mb-2 text-muted">제출자: {selectedReport.submitter} | 날짜: {selectedReport.date}</h6>
-                <p className="card-text">{selectedReport.content}</p>
-                <p>상태: {selectedReport.status}</p>
-              </div>
-            </div>
-          ) : <p className="text-muted">보고서를 선택하세요.</p>}
-        </div>
+        {/* 페이징 (모양만) */}
+        <nav className="mt-3" aria-label="페이지네이션">
+          <ul className="pagination justify-content-center mb-0">
+            <li className="page-item disabled"><span className="page-link">&laquo;</span></li>
+            <li className="page-item active"><span className="page-link">1</span></li>
+            <li className="page-item disabled"><span className="page-link">&raquo;</span></li>
+          </ul>
+        </nav>
+      </main>
+
+      {/* 우측 하단 버튼 */}
+      <div className="position-fixed bottom-0 end-0 p-3 d-flex flex-column gap-2">
+        <Link to="/" className="btn btn-light shadow-sm border">
+          <i className="bi bi-house" aria-hidden="true"></i> 홈으로
+        </Link>
       </div>
     </div>
   );
 }
+
+export default ApprovalList;
