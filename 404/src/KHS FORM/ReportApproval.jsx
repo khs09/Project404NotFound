@@ -114,7 +114,11 @@ function ReportApproval() {
           <i className="bi bi-house"></i> 홈으로
         </Link>
       </div>
-
+      <div className="position-fixed bottom-0 start-0 p-3 d-flex flex-column gap-2">
+        <Link to="/" className="btn btn-light shadow-sm border">
+          <i className="bi bi-card-list"></i> 목록
+        </Link>
+      </div>
     </div>
   );
 }

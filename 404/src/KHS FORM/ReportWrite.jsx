@@ -71,9 +71,6 @@ function ReportWrite() {
 
               {/* 버튼 */}
               <div className="d-flex justify-content-between">
-                <Link to="/" className="btn btn-outline-secondary">
-                  <i className="bi bi-arrow-left"></i> 목록
-                </Link>
                 <button type="submit" className="btn btn-primary">
                   <i className="bi bi-check-lg"></i> 제출
                 </button>
@@ -87,6 +84,11 @@ function ReportWrite() {
       <div className="position-fixed bottom-0 end-0 p-3 d-flex flex-column gap-2">
         <Link to="/" className="btn btn-light shadow-sm border">
           <i className="bi bi-house" aria-hidden="true"></i> 홈으로
+        </Link>
+      </div>
+      <div className="position-fixed bottom-0 start-0 p-3 d-flex flex-column gap-2">
+        <Link to="/" className="btn btn-light shadow-sm border">
+          <i className="bi bi-card-list"></i> 목록
         </Link>
       </div>
     </div>
