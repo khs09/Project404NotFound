@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-function ApprovalList(props) {
+function CheckReport(props) {
   console.log(props);
 
   // 샘플 데이터 (디자인용)
@@ -169,4 +169,4 @@ function ApprovalList(props) {
   );
 }
 
-export default ApprovalList;
+export default CheckReport;
