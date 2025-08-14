@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-function SubmitReport() {
+function ReportWrite() {
   const styles = {
     hero: {
       height: 300,
-      backgroundImage: "url(/images/Generated.png)",
+      backgroundImage: "url(/src/images/flight.png)",
       backgroundSize: "cover",
       backgroundPosition: "center",
     },
@@ -19,27 +19,11 @@ function SubmitReport() {
 
   return (
     <div className="bg-light min-vh-100 d-flex flex-column">
-      {/* 상단 네비 */}
-      <header>
-        <nav className="navbar bg-white border-bottom">
-          <div className="container-xxl">
-            <Link className="navbar-brand fw-bold" to="/">✈ 그룹웨어</Link>
-            <ul className="navbar-nav flex-row gap-3">
-              <li className="nav-item"><span className="nav-link">전자결재시스템</span></li>
-              <li className="nav-item"><span className="nav-link">문서보관소</span></li>
-              <li className="nav-item"><span className="nav-link">업무보고시스템</span></li>
-              <li className="nav-item"><span className="nav-link">커뮤니케이션기능</span></li>
-              <li className="nav-item"><span className="nav-link">일정관리</span></li>
-            </ul>
-            <div className="ms-auto">
-              <Link to="/login" className="btn btn-outline-secondary btn-sm">
-                로그인
-              </Link>
-          </div>
-          </div>
-        </nav>
+      
 
-        {/* 상단 배너(히어로) */}
+      {/*  배너 */}
+      <header>
+        
         <section className="position-relative" style={styles.hero}>
           <div className="position-absolute top-0 start-0 w-100 h-100" style={styles.heroMask} />
           <div className="container-xxl position-relative" style={{ zIndex: 1 }}>
@@ -109,4 +93,4 @@ function SubmitReport() {
   );
 }
 
-export default SubmitReport;
+export default ReportWrite;

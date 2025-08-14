@@ -1,19 +1,19 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import CheckReport from './KHS FORM/CheckReport';
-import SubmitReport from './KHS FORM/SubmitReport';
+import ReportList from './KHS FORM/ReportList.jsx';
+import ReportWrite from './KHS FORM/ReportWrite.jsx';
 import Login from './KHS FORM/Login.jsx'; 
-import ApprovalReport from './KHS FORM/ApprovalReport'; // 추가
+import ReportApproval from './KHS FORM/ReportApproval.jsx'; 
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<CheckReport />} />
-          <Route path="/SubmitReport" element={<SubmitReport />} />
+          <Route path="/" element={<ReportList />} />
+          <Route path="/ReportWrite" element={<ReportWrite />} />
           <Route path="/login" element={<Login />} /> 
-          <Route path="/ApprovalReport" element={<ApprovalReport />} /> {/* 추가 */}
+          <Route path="/ReportApproval" element={<ReportApproval />} /> 
         </Routes>
       </BrowserRouter>
     </div>
